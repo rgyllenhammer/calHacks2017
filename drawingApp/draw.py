@@ -10,7 +10,7 @@ startY = 0;
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (startX,startY)
 
 # variables surrounding images
-screenshotPath = '/Users/ReeseGyllenhammer/desktop/calHacks2017/screenShots/'
+screenshotPath = '/Users/ReeseGyllenhammer/desktop/calHacks2017/drawingApp/screenShots/'
 
 # initializes pygame
 pygame.init()
