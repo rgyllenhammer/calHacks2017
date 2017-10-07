@@ -3,6 +3,7 @@ import pyscreenshot as ImageGrab
 import os
 from PIL import Image
 import shelve
+import numpy
 
 # sets position of pygame window to know where to take the screenshot
 startX = 0;
@@ -10,7 +11,8 @@ startY = 0;
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (startX,startY)
 
 # variables surrounding images
-screenshotPath = '/Users/ReeseGyllenhammer/desktop/calHacks2017/drawingApp/screenShots/'
+screenshotPNGPath = '/Users/ReeseGyllenhammer/desktop/calHacks2017/drawingApp/screenShotsPNG/'
+screenshotNPYArrPath = '/Users/ReeseGyllenhammer/desktop/calHacks2017/drawingApp/screenShotsNPYArr/'
 
 # initializes pygame
 pygame.init()
@@ -85,8 +87,12 @@ def main():
                     fileNum = d['fileNum']
 
                     im = ImageGrab.grab(bbox=(startX, startY + 50, startX + screenWidth, startY + screenHeight))
-                    fileOut = screenshotPath + 'im{}.png'.format(str(fileNum))
-                    im.save(fileOut)
+                    fileOutPNG = screenshotPNGPath + 'im{}.png'.format(str(fileNum))
+                    fileOutNPYArr = screenshotNPYArrPath + 'im{}.npy'.format(str(fileNum))
+
+                    npImg = numpy.asarray(im)
+                    im.save(fileOutPNG)
+                    numpy.save(fileOutNPYArr, npImg)
 
                     fileNum = int(fileNum)
                     fileNum += 1
